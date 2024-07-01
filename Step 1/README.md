@@ -9,5 +9,6 @@ The duration for both kernel launches is roughly the same with the following SOL
 </p>
 
 ### CuPy with RawKernel:
-
-
+<p align="center">
+  <img width="550" height="300" src="./SOL_arithmetic_CUPY.png">
+</p>

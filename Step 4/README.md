@@ -48,6 +48,8 @@ Elapsed time: 13.79976511001587 seconds
 0.9721714285714286
 ```
 
+As observed here, the distance calculation has high computational needs, and converting it to RawKernel already cuts down the total execution of the program by half.
+
 #### Implementing Multi-GPU Commands
 When Multi-GPU commands are used on the Euclidean Distance Raw Kernel is used with the KNN Pseudocode marked as Initial above, there is no overlapping between the execution of the 2 GPUs. In contrast, GPU 1 finishes executing on half of the dataset, and after GPU 2 starts working on the rest of the data. This can be observed in the following image from Nsight Systems:
 

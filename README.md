@@ -27,17 +27,17 @@ This will serve as a log for all the actions taken on the project and the decisi
    - implemented using CuPy, with the same kernel configuration to the CUDA version, and compared between models' performance.
        ##### Observed Outputs:
      
-✔️ Using CuPy for Logistic Regression
+✔️ [Step 2](Step%202/README.md) Using CuPy for Logistic Regression
    - implemented using CuPy and Numpy for performance comparison
        ##### Observed Outputs:
      
-✔️ Comparing Frameworks: CuPy, Numba, Pytorch
+✔️ [Step 3](Step%203/README.md) Comparing Frameworks: CuPy, Numba, Pytorch
    Relevant links for implementation: [CuPy](https://docs.cupy.dev/en/stable/user_guide/kernel.html), [Numba](https://numba.pydata.org/numba-doc/latest/cuda/kernels.html), [Pytorch](https://pytorch.org/tutorials/advanced/cpp_extension.html).
    - implemented successfully for only CuPy and Numba.
        ##### Observed Outputs:
      
 #### After the creation of this log file following is being done:
-❌ Using KNN for Cupy Multi-GPU implementation with MNIST dataset
+❌ [Step 4](Step%204/README.md) Using KNN for Cupy Multi-GPU implementation with MNIST dataset
    - implemented using KNN for Cupy Multi-GPU implementation with MNIST dataset.
      - ✔️ Initially implemented it in pure CuPy and ran it.
      - Converted the euclidean distance calculation into CUDA kernel to disperse between GPUs.

@@ -11,9 +11,7 @@ Moreover, to conduct multiclass classification, the Machine Learning model is ch
 **KNN Pseudocode:**
 
     Load the training data.
-    
     Predict a class value for new data:
-    
         Calculate distance(X, Xi) from i=1,2,3,….,n.
         where X= new data point, Xi= training data, distance as per chosen distance metric, in here Euclidean Distance is used.
         Sort these distances in increasing order with corresponding train data.

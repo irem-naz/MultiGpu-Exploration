@@ -4,6 +4,7 @@ After going through preliminary steps for framework and workload exploration, as
 
 The workload in this step is different than previous parts. MNIST dataset is used, through OpenML database, titled "mnist_784", version = 1.
 ```python
+from sklearn.datasets import fetch_openml
 X, y = fetch_openml('mnist_784', version=1, return_X_y=True, as_frame=False)
 ```
 Moreover, to conduct multiclass classification, the Machine Learning model is changed to K-Nearest Neighbour. 
@@ -20,7 +21,7 @@ Moreover, to conduct multiclass classification, the Machine Learning model is ch
 
 
 #### Splitting Data
-The splitting data process is the only part of the code that uses non-Cupy library, due to have a well-shuffled and split data to be used in the model. Indices for the split is acquired using _sklearn_.
+The splitting data process is the only part of the code that uses non-Cupy library, to acquire a well-shuffled and split data to be used in the model. Indices for the split is acquired using _sklearn_.
 
 ```python
 from sklearn.model_selection import train_test_split
@@ -36,7 +37,6 @@ Hence, despite having the indices array as non-Cupy, the split arrays for train 
 **Pure Cupy**
 ```sh
 $ python mnist_knn.py
-
 Elapsed time: 28.71679949760437 seconds
 Accuracy: 0.9721714285714286
 ```
@@ -49,4 +49,5 @@ Elapsed time: 13.79976511001587 seconds
 ```
 
 #### Implementing Multi-GPU Commands
-When Multi-GPU commands are used
+When Multi-GPU commands are used on the Euclidean Distance Raw Kernel is used with the KNN Pseudocode marked as Initial above, there is no overlapping between the execution of the 2 GPUs. In contrast, GPU 1 finishes executing on half of the dataset, and after GPU 2 starts working on the rest of the data. This can be observed in the following image from Nsight Systems:
+

@@ -58,7 +58,7 @@ num_runs = 20
 total_time = 0.0
 
 for i in range(num_runs):
-    print(f"Run {i + 1}/{num_runs}")
+    # print(f"Run {i + 1}/{num_runs}")
     total_time += run_program()
 
 average_time = total_time / num_runs

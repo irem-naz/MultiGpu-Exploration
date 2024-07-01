@@ -20,7 +20,7 @@ Moreover, to conduct multiclass classification, the Machine Learning model is ch
         From these K rows, each label gets a weighted vote according to how close they are to new data, to predict the new data's label.
 
 
-#### Splitting Data
+### Splitting Data
 The splitting data process is the only part of the code that uses non-Cupy library, to acquire a well-shuffled and split data to be used in the model. Indices for the split is acquired using _sklearn_.
 
 ```python
@@ -33,7 +33,7 @@ def get_train_test_indices(n_samples, test_size=0.25, random_state=None):
 
 Hence, despite having the indices array as non-Cupy, the split arrays for train and test groups are Cupy arrays.
 
-#### Pure Cupy vs Euclidean Distance RawKernel on Single GPU Output, KNN model with MNIST dataset
+### Pure Cupy vs Euclidean Distance RawKernel on Single GPU Output, KNN model with MNIST dataset
 **Pure Cupy**
 ```sh
 $ python mnist_knn.py
@@ -50,7 +50,7 @@ Elapsed time: 13.79976511001587 seconds
 
 As observed here, the distance calculation has high computational needs, and converting it to RawKernel already cuts down the total execution of the program by half.
 
-#### Implementing Multi-GPU Commands
+### Implementing Multi-GPU Commands
 When Multi-GPU commands are used on the Euclidean Distance Raw Kernel is used with the KNN Pseudocode marked as Initial above, there is no overlapping between the execution of the 2 GPUs. In contrast, GPU 1 finishes executing on half of the dataset, and after GPU 2 starts working on the rest of the data. This can be observed in the following image from Nsight Systems:
 
 

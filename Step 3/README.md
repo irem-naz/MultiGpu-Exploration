@@ -16,7 +16,7 @@ Theta after gradient descent:
 ```
 #### Cupy implementation total program duration:
 ```sh
-python lg_cupy.py
+$ python lg_cupy.py
 Theta after gradient descent: [[0.06212644]
  [0.12514137]
  [0.09668753]]

@@ -121,5 +121,13 @@ Theta after gradient descent: tensor([[-0.3796],
         [ 0.6117]], device='cuda:6')
 Elapsed time: 0.6835305690765381 seconds
 ```
-However when the 3rd degree polynomial approximation for a sin function is used, Torch arrays is seen to perform better than the Cupy arrays.
+However when the 3rd degree polynomial approximation for a sin function is used, Torch arrays are seen to perform better than the Cupy arrays.
 
+```sh
+$ python fit_poly_torch.py
+Average elapsed time over 20 runs: 0.42211618423461916 seconds
+
+$ python fit_poly_cupy.py
+Average elapsed time over 20 runs: 0.8112529397010804 seconds
+```
+**!!** There is a need for further exploration here, especially because Pytorch shows similar or possibly better performance compared to Cupy in some cases. However the test cases here do not consider the kernel configuration setup for Pytorch because of the aforementioned problems in launching Pybind11 for that purpose. 

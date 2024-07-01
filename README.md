@@ -16,7 +16,7 @@ They all can be installed using the environment.yml in this repository using the
 conda env create -f environment.yml
 ```
 
-## Purpose of the README file
+## Process LOG
 This will serve as a log for all the actions taken on the project and the decisions made.
 
 #### Until the creation of this log file following has been done:

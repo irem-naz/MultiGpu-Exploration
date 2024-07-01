@@ -31,7 +31,7 @@ This will serve as a log for all the actions taken on the project and the decisi
    - implemented using CuPy and Numpy for performance comparison
        ##### Observed Outputs:
      
-✔️ [Step 3](Step%203/README.md) Comparing Frameworks: CuPy, Numba, Pytorch
+✔️ [Step 3](Step%203/README.md) Comparing Frameworks: CuPy, Numba, Pytorch.
    Relevant links for implementation: [CuPy](https://docs.cupy.dev/en/stable/user_guide/kernel.html), [Numba](https://numba.pydata.org/numba-doc/latest/cuda/kernels.html), [Pytorch](https://pytorch.org/tutorials/advanced/cpp_extension.html).
    - implemented successfully for only CuPy and Numba.
        ##### Observed Outputs:

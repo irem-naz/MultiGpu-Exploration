@@ -4,6 +4,9 @@ The simple kernel presented here both stores the id of an array as a value to th
 
 The duration for both kernel launches is roughly the same with the following SOL tables as follows:
 ### Pure CUDA:
+<p align="center">
+  <img width="460" height="300" src="Step%201/SOL_arithmetic_CUDA.png">
+</p>
 
 ### CuPy with RawKernel:
 

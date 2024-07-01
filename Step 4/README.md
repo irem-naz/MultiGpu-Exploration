@@ -53,8 +53,6 @@ When Multi-GPU commands are used on the Euclidean Distance Raw Kernel is used wi
 
 
 This case happens despite actively sending the split dataset into separate GPUs, as well as using Streams from concurrency structures. Hence, at this point couple of actions are considered. 
-1. To change the pseudocode to get through Euclidean Distance calculation at once, with no classification calculation coming in between to observe whether parallel execution is blocked due to Host being occupied with many calls from GPU 1.
-    a. For this purpose the following Pseudocode is considered:
-   
-3. Have all of the data reside in Host (while data is acquired and split) and only send to 2 separate GPUs when they need to get processed.
-4. TBC! 
+1. To change the pseudocode to get through Euclidean Distance calculation at once, with no classification calculation coming in between to observe whether parallel execution is blocked due to Host being occupied with many calls from GPU 1.For this purpose the following Pseudocode is considered:
+2. Have all of the data reside in Host (while data is acquired and split) and only send to 2 separate GPUs when they need to get processed.
+3. TBC! 

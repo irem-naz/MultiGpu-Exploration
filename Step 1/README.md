@@ -1,10 +1,14 @@
-# Comparing .py vs .cu version of the same code
+# Comparing CUDA and Cupy versions of Simple Kernel
 
-The simple kernel presented here both stores the id of an array as a value to that location in the array using GPU. 
+The simple kernel presented here stores the id of an array as a value to that location in the array using GPU. There are 2 implementations curated here, one using only CUDA and another with Cupy methods as well as a CUDA RawKernel. Kernel launch configurations are identical for comparisons, they can be modified to observe the affect of different configurations for GPU utilization.
 
 The duration for both kernel launches is roughly the same with the following SOL tables as follows:
+
 ### Pure CUDA:
 ```sh
+$ nvcc arithmetic.cu -o arithmetic
+$ ncu ./arithmetic
+
 simpleKernel(int *, int) (1, 1, 1)x(1024, 1, 1), Context 1, Stream 7, Device 3, CC 8.0
     Section: GPU Speed Of Light Throughput
     ----------------------- ------------- ------------
@@ -23,8 +27,10 @@ simpleKernel(int *, int) (1, 1, 1)x(1024, 1, 1), Context 1, Stream 7, Device 3, 
     ----------------------- ------------- ------------
 ```
 
-### CuPy with RawKernel:
+### Cupy with RawKernel:
 ```sh
+$ ncu python arithmetic.py
+
 simpleKernel (1, 1, 1)x(1024, 1, 1), Context 1, Stream 7, Device 3, CC 8.0
     Section: GPU Speed Of Light Throughput
     ----------------------- ------------- ------------

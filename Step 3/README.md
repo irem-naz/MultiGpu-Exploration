@@ -90,7 +90,7 @@ Section: GPU Speed Of Light Throughput
 ```
 
 ### TakeAways:
-In terms of total execution time, Cupy seems to be second right after CUDA, which is the native programming environment for NVIDIA GPUs. However, as the goal of this project is to look for multiple GPU usage for Machine Learning methods, CUDA lacks the necessary abstractions to code complicated ML models with efficiency. Hence, it is seen that Cupy is the best out of frameworks considered for this purpose. In total duration and kernel duration Numba is seen to lag behind.  
+In terms of total execution time, Cupy seems to be second right after CUDA, which is the native programming environment for NVIDIA GPUs. However, as the goal of this project is to look for multiple GPU usage for Machine Learning methods, CUDA lacks the necessary abstractions to code complicated ML models with efficiency. Hence, it is seen that Cupy is the best out of the frameworks considered for this purpose. In total duration and kernel duration, Numba is seen to lag.  
 
 ##### Run the code in this part using:
 ```sh
@@ -106,5 +106,20 @@ $ ncu --nvtx --nvtx-include "CUDAkernel/" python lg_numba.py
 ```
 
 ## [Part-2: Cupy vs Pytorch](./Part-2)
-When GPU-aligned language-inherent methods are used Cupy and Pytorch are observed to show similar performance.
+When GPU-aligned language-inherent methods are used Cupy and Pytorch are observed to show similar performance. For example in the implementation of logistic regression, the Torch  arrays (in Device) and Cupy arrays (in Device) are used. The 2 programs yield similar results in terms of total time taken for execution.
+
+```sh
+$ python logistic_cupy.py
+Theta after gradient descent: [[-0.29748608]
+ [ 0.58119898]
+ [ 0.61632247]]
+Elapsed time: 0.6893346309661865 seconds
+
+$ python logistic_pytorch.py
+Theta after gradient descent: tensor([[-0.3796],
+        [ 0.5992],
+        [ 0.6117]], device='cuda:6')
+Elapsed time: 0.6835305690765381 seconds
+```
+However when the 3rd degree polynomial approximation for a sin function is used, Torch arrays is seen to perform better than the Cupy arrays.
 

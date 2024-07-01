@@ -9,6 +9,7 @@ The same binary logistic regression is implemented for each of the models, the d
 
 #### CUDA implementation total program duration:
 ```sh
+$ nvcc lg_cuda.cu -o lg_cuda
 $ ./lg_cuda
 Elapsed time: 0.049655 seconds
 Theta after gradient descent:
@@ -34,6 +35,8 @@ In addition to comparing the total duration of executing the identical programs,
 
 #### SOL Table for CUDA
 ```sh
+$ ncu ./lg_cuda
+
 compute_cost_kernel(const float *, const float *, float *, int) (157, 1, 1)x(64, 1, 1), Context 1, Stream 7, Device 6, CC 8.0
     Section: GPU Speed Of Light Throughput
     ----------------------- ------------- ------------
@@ -54,6 +57,8 @@ compute_cost_kernel(const float *, const float *, float *, int) (157, 1, 1)x(64,
 
 #### SOL Table for Cupy
 ```sh
+$ ncu --nvtx --nvtx-include "CUDAkernel/" python lg_cupy.py
+
 Section: GPU Speed Of Light Throughput
     ----------------------- ------------- ------------
     Metric Name               Metric Unit Metric Value
@@ -72,6 +77,8 @@ Section: GPU Speed Of Light Throughput
 ```
 #### SOL Table for Numba
 ```sh
+$ ncu --nvtx --nvtx-include "CUDAkernel/" python lg_numba.py
+
 Section: GPU Speed Of Light Throughput
     ----------------------- ------------- ------------
     Metric Name               Metric Unit Metric Value
@@ -92,18 +99,6 @@ Section: GPU Speed Of Light Throughput
 ### TakeAways:
 In terms of total execution time, Cupy seems to be second right after CUDA, which is the native programming environment for NVIDIA GPUs. However, as the goal of this project is to look for multiple GPU usage for Machine Learning methods, CUDA lacks the necessary abstractions to code complicated ML models with efficiency. Hence, it is seen that Cupy is the best out of the frameworks considered for this purpose. In total duration and kernel duration, Numba is seen to lag.  
 
-##### Run the code in this part using:
-```sh
-$ nvcc lg_cuda.cu -o lg_cuda
-$ ./lg_cuda
-$ ncu ./lg_cuda
-
-$ python lg_cupy.py
-$ ncu --nvtx --nvtx-include "CUDAkernel/" python lg_cupy.py
-
-$ python lg_numba.py
-$ ncu --nvtx --nvtx-include "CUDAkernel/" python lg_numba.py
-```
 
 ## [Part-2: Cupy vs Pytorch](./Part-2)
 When GPU-aligned language-inherent methods are used Cupy and Pytorch are observed to show similar performance. For example in the implementation of logistic regression, the Torch  arrays (in Device) and Cupy arrays (in Device) are used. The 2 programs yield similar results in terms of total time taken for execution.
@@ -121,7 +116,7 @@ Theta after gradient descent: tensor([[-0.3796],
         [ 0.6117]], device='cuda:6')
 Elapsed time: 0.6835305690765381 seconds
 ```
-However when the 3rd degree polynomial approximation for a sin function is used, Torch arrays are seen to perform better than the Cupy arrays.
+However, when the 3rd degree polynomial approximation for a sin function is used, Torch arrays are seen to perform better than the Cupy arrays.
 
 ```sh
 $ python fit_poly_torch.py

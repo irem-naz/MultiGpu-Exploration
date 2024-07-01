@@ -20,7 +20,7 @@ conda env create -f environment.yml
 This will serve as a log for all the actions taken on the project and the decisions made.
 
 #### Until the creation of this log file following has been done:
-✔️ CUDA exploration with Arithmetic.cu by implementing a simple kernel that does id calculation and stores it as value.
+✔️ [Step 1](Step-1/README.md)CUDA exploration with Arithmetic.cu by implementing a simple kernel that does id calculation and stores it as value.
    - implemented using CUDA
      
 ✔️ CuPy exploration with Arithmetic.py by implementing a simple kernel that does id calculation and stores it as value.

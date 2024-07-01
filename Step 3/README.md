@@ -1,8 +1,8 @@
 # Comparing Frameworks
 
-There are 3 frameworks in Python language that allows low-level kernel configuration management: Cupy - a drop-in replacement for Numpy -, Numba - which is JIT compiler for CUDA option -, and Pytorch that can launch its arrays in GPU due to inherent GPU acceleration and allows kernel management through C to Python translation libraries such as Pybind11.
+There are 3 frameworks in Python language that allows low-level kernel configuration management: Cupy - a drop-in replacement for Numpy -, Numba - which is JIT compiler for CUDA option -, and Pytorch which can launch its arrays in GPU due to inherent GPU acceleration and allows kernel management through C to Python translation libraries such as Pybind11.
 
-The same binary logistic regression is implemented for each of the models.
+The same binary logistic regression is implemented for each of the models, the data is generated as part of the program.
 
 ## Part-1: CUDA vs Cupy vs Numba
 **!** Since there were many problems faced in implementing Pybind11, Pytorch is not compared to other frameworks here that use CUDA kernels to manage kernel launch configurations.
@@ -30,7 +30,27 @@ Theta after gradient descent: [[0.06453408]
  [0.09929141]]
 Elapsed time: 0.36286187171936035 seconds
 ```
-In addition to comparing the total duration of executing the identical programs, there is a need to compare the specific kernel launches with identical launch configurations and workload. In this part CUDA is not consi
+In addition to comparing the total duration of executing the identical programs, there is a need to compare the specific kernel launches with identical launch configurations and workload as well. 
+
+#### SOL Table for CUDA
+```sh
+compute_cost_kernel(const float *, const float *, float *, int) (157, 1, 1)x(64, 1, 1), Context 1, Stream 7, Device 6, CC 8.0
+    Section: GPU Speed Of Light Throughput
+    ----------------------- ------------- ------------
+    Metric Name               Metric Unit Metric Value
+    ----------------------- ------------- ------------
+    DRAM Frequency          cycle/nsecond         1.53
+    SM Frequency            cycle/nsecond         1.09
+    Elapsed Cycles                  cycle        4,760
+    Memory Throughput                   %         2.05
+    DRAM Throughput                     %         0.94
+    Duration                      usecond         4.35
+    L1/TEX Cache Throughput             %         4.19
+    L2 Cache Throughput                 %         1.47
+    SM Active Cycles                cycle     2,326.82
+    Compute (SM) Throughput             %         2.57
+    ----------------------- ------------- ------------
+```
 
 #### SOL Table for Cupy
 ```sh
@@ -68,4 +88,10 @@ Section: GPU Speed Of Light Throughput
     Compute (SM) Throughput             %         2.63
     ----------------------- ------------- ------------
 ```
+
+### TakeAways:
+In terms of total execution time, Cupy seems to be second right after CUDA, which is the native programming environment for NVIDIA GPUs. However, as the goal of this project is to look for multiple GPU usage for Machine Learning methods, CUDA lacks the necessary abstractions to code complicated ML models with efficiency. Hence, it is seen that Cupy is the best out of frameworks considered for this purpose. In total duration and kernel duration Numba is seen to lag behind.  
+
 ## Part-2: Cupy vs Pytorch
+When GPU-aligned language-inherent methods are used Cupy and Pytorch are observed to show similar performance.
+

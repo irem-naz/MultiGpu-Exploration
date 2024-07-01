@@ -24,6 +24,22 @@ simpleKernel(int *, int) (1, 1, 1)x(1024, 1, 1), Context 1, Stream 7, Device 3, 
 ```
 
 ### CuPy with RawKernel:
-<p align="center">
-  <img width="550" height="300" src="./SOL_arithmetic_CUPY.png">
-</p>
+```sh
+simpleKernel (1, 1, 1)x(1024, 1, 1), Context 1, Stream 7, Device 3, CC 8.0
+    Section: GPU Speed Of Light Throughput
+    ----------------------- ------------- ------------
+    Metric Name               Metric Unit Metric Value
+    ----------------------- ------------- ------------
+    DRAM Frequency          cycle/nsecond         1.05
+    SM Frequency            cycle/usecond       748.83
+    Elapsed Cycles                  cycle        3,119
+    Memory Throughput                   %         0.82
+    DRAM Throughput                     %         0.00
+    Duration                      usecond         4.16
+    L1/TEX Cache Throughput             %        60.54
+    L2 Cache Throughput                 %         0.82
+    SM Active Cycles                cycle         8.56
+    Compute (SM) Throughput             %         0.04
+    ----------------------- ------------- ------------
+```
+

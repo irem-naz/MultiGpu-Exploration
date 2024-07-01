@@ -26,7 +26,7 @@ def main():
    
 
     # Configure the block and grid size
-    threads_per_block = 256
+    threads_per_block = 1024
     blocks_per_grid = size // threads_per_block
 
     # Launch the kernel

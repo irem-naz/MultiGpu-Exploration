@@ -61,7 +61,7 @@ This case happens despite actively sending the split dataset into separate GPUs,
 1. To change the pseudocode to get through Euclidean Distance calculation at once, with no classification calculation coming in between to observe whether parallel execution is blocked due to Host being occupied with many calls from GPU 1.
      a. For this purpose the following Pseudocode is considered:
 
-        **KNN Pseudocode (Second):**
+     **KNN Pseudocode (Second):**
    
             Load the training data in Host.
             Split x_test data to 2 GPUs in Device:

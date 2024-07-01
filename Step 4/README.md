@@ -19,3 +19,9 @@ Moreover, to conduct multiclass classification, the Machine Learning model is ch
         From these K rows, each label gets a weighted vote according to how close they are to new data, to predict the new data's label.
 
 
+#### Splitting Data
+The splitting data process is the only part of the code that uses non-Cupy library, due to have a well-shuffled and split data to be used in the model. Indices for the split is acquired using _sklearn_.
+
+```python
+from sklearn.model_selection import train_test_split
+```

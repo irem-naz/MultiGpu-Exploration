@@ -3,12 +3,12 @@
 After going through preliminary steps for framework and workload exploration, as well as simple mathematical and machine learning model implementation exploration, in this step the exploration for Multi-GPU utilization is conducted. 
 
 The workload in this step is different than previous parts. MNIST dataset is used, through OpenML database, titled "mnist_784", version = 1.
-```py
+```python
 X, y = fetch_openml('mnist_784', version=1, return_X_y=True, as_frame=False)
 ```
 Moreover, to conduct multiclass classification, the Machine Learning model is changed to K-Nearest Neighbour. 
 
-**KNN Pseudocode:**
+**KNN Pseudocode (Initial):**
 
     Load the training data.
     Predict a class value for new data:
@@ -24,4 +24,29 @@ The splitting data process is the only part of the code that uses non-Cupy libra
 
 ```python
 from sklearn.model_selection import train_test_split
+def get_train_test_indices(n_samples, test_size=0.25, random_state=None):
+    indices = np.arange(n_samples)
+    train_indices, test_indices = train_test_split(indices, test_size=test_size, random_state=random_state)
+    return train_indices, test_indices
 ```
+
+Hence, despite having the indices array as non-Cupy, the split arrays for train and test groups are Cupy arrays.
+
+#### Pure Cupy vs Euclidean Distance RawKernel on Single GPU Output, KNN model with MNIST dataset
+**Pure Cupy**
+```sh
+$ python mnist_knn.py
+
+Elapsed time: 28.71679949760437 seconds
+Accuracy: 0.9721714285714286
+```
+
+**With Euclidean Distance as RawKernel**
+```sh
+$ python rawEucOnly.py
+Elapsed time: 13.79976511001587 seconds
+0.9721714285714286
+```
+
+#### Implementing Multi-GPU Commands
+When Multi-GPU commands are used

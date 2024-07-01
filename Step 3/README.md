@@ -4,7 +4,7 @@ There are 3 frameworks in Python language that allows low-level kernel configura
 
 The same binary logistic regression is implemented for each of the models, the data is generated as part of the program.
 
-## Part-1: CUDA vs Cupy vs Numba
+## [Part-1: CUDA vs Cupy vs Numba](./Part-1)
 **!** Since there were many problems faced in implementing Pybind11, Pytorch is not compared to other frameworks here that use CUDA kernels to manage kernel launch configurations.
 
 #### CUDA implementation total program duration:
@@ -92,6 +92,19 @@ Section: GPU Speed Of Light Throughput
 ### TakeAways:
 In terms of total execution time, Cupy seems to be second right after CUDA, which is the native programming environment for NVIDIA GPUs. However, as the goal of this project is to look for multiple GPU usage for Machine Learning methods, CUDA lacks the necessary abstractions to code complicated ML models with efficiency. Hence, it is seen that Cupy is the best out of frameworks considered for this purpose. In total duration and kernel duration Numba is seen to lag behind.  
 
-## Part-2: Cupy vs Pytorch
+##### Run the code in this part using:
+```sh
+$ nvcc lg_cuda.cu -o lg_cuda
+$ ./lg_cuda
+$ ncu ./lg_cuda
+
+$ python lg_cupy.py
+$ ncu --nvtx --nvtx-include "CUDAkernel/" python lg_cupy.py
+
+$ python lg_numba.py
+$ ncu --nvtx --nvtx-include "CUDAkernel/" python lg_numba.py
+```
+
+## [Part-2: Cupy vs Pytorch](./Part-2)
 When GPU-aligned language-inherent methods are used Cupy and Pytorch are observed to show similar performance.
 

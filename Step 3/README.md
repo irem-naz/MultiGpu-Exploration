@@ -30,3 +30,4 @@ Theta after gradient descent: [[0.06453408]
  [0.09929141]]
 Elapsed time: 0.36286187171936035 seconds
 ```
+## Part-2: Cupy vs Pytorch

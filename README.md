@@ -2,7 +2,7 @@
 This is a project that explores multiple GPU usage in ML with low level thread and block management enabled.
 
 ## Getting Started
-In order to run the project the following dependencies are needed. Conda environment is recommended for ease of installing the libraries, both Miniconda and Anaconda work.
+In order to run the project the following dependencies are needed. Conda environment is recommended for ease of installing the libraries, both Miniconda and Anaconda works.
  - Python
  - CUDA & C compiler
  ### Libraries used:

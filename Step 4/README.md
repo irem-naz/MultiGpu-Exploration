@@ -54,7 +54,7 @@ As observed here, the distance calculation has high computational needs, and con
 When Multi-GPU commands are used on the Euclidean Distance Raw Kernel is used with the KNN Pseudocode marked as Initial above, there is no overlapping between the execution of the 2 GPUs. In contrast, GPU 1 finishes executing on half of the dataset, and after GPU 2 starts working on the rest of the data. This can be observed in the following image from Nsight Systems:
 
 <p align="center">
-  <img width="900" height="100" src="./MultiGpu_Trial1.png">
+  <img width="900" height="150" src="./MultiGpu_Trial1.png">
 </p>
 
 This case happens despite actively sending the split dataset into separate GPUs, as well as using Streams from concurrency structures. Hence, at this point couple of actions are considered. 

@@ -71,4 +71,10 @@ This case happens despite actively sending the split dataset into separate GPUs,
                 From these K rows, each label gets a weighted vote according to how close they are to new data, to predict the new data's label.
    
 3. Have all of the data reside in Host (while data is acquired and split) and only send to 2 separate GPUs when they need to get processed.
-4. TBC! 
+4. TBC!
+
+**What is done:**
+
+- In order to imitate any concurrency the following repo is run: [link](https://github.com/zchee/cuda-sample/tree/master/0_Simple/simpleMultiGPU).
+    - Gpu 1 HtoD, (Gpu 1 kernel and DtoH)/(Gpu 2 HtoD), (Gpu 2 kernel and DtoH)/(Gpu 3 HtoD), etc. type of overlap is seen using streams and async mem copies.
+- Looking for 2 kernel executed in separate GPUs concurrency.

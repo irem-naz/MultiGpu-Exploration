@@ -76,5 +76,6 @@ This case happens despite actively sending the split dataset into separate GPUs,
 **What is done:**
 
 - In order to imitate any concurrency the following repo is run: [link](https://github.com/zchee/cuda-sample/tree/master/0_Simple/simpleMultiGPU).
-    - Gpu 1 HtoD, (Gpu 1 kernel and DtoH)/(Gpu 2 HtoD), (Gpu 2 kernel and DtoH)/(Gpu 3 HtoD), etc. type of overlap is seen using streams and async mem copies.
-- Looking for 2 kernel executed in separate GPUs concurrency.
+    - In its original configuration this code does async memory transfer from HtoD, kernel launch, asynch memory transfer from DtoH in a loop for each GPU. The resultant concurrency is in the pattern: Gpu 1 HtoD, (Gpu 1 kernel and DtoH)||(Gpu 2 HtoD), (Gpu 2 kernel and DtoH)||(Gpu 3 HtoD) with a duration of 13.3 ms.
+    - A slightly modified code where one loop does async memory transfer from HtoD (without _cudaStreamSynchronize(plan[i].stream)_) and the next loop does kernel launch and async memory transfer from DtoH results in the following concurrency type with a duration of 7.6 ms.
+    - A slightly modified code where one loop does async memory transfer from HtoD (with _cudaStreamSynchronize(plan[i].stream)_) and the next loop does kernel launch and async memory transfer from DtoH results in the following concurrency type with a duration of 7.05 ms.

@@ -38,8 +38,7 @@ This will serve as a log for all the actions taken on the project and the decisi
    - implemented using KNN for Cupy Multi-GPU implementation with MNIST dataset.
      - ✔️ Initially implemented it in pure CuPy and ran it.
      - Converted the euclidean distance calculation into CUDA kernel to disperse between GPUs.
-       - **Problem**  is that because of the direct conversion of the algorithm from pure CuPy implementation to RawKernel, memory transfers and other classification calculations come between euclidean distance calculations.
-       - **Goal** is to have all the euclidean distance calculations run first and parallelize that between GPUs, before memory transfers and classification calculations take place.
-
-
+       - **Problem:** Despite implementing rawKernel, and establishing streams and GPU contexts, each action is processed sequentially.
+       - **Goal** is to gain any type of concurrency between GPUs.
+       - [Follow the updates on the implementation here.](Step%204/README.md)
    

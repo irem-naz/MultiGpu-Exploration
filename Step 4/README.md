@@ -82,10 +82,12 @@ In order to imitate any concurrency the following repo is run: [link](https://gi
 <p align="center">
   <img width="900" height="300" src="./multiGPUexampleOriginal.png">
 </p>      
+
 **b.** A slightly modified code where one loop does async memory transfer from HtoD (without _cudaStreamSynchronize(plan[i].stream)_) and the next loop does kernel launch and async memory transfer from DtoH results in the following concurrency type with a duration of 7.6 ms.
 <p align="center">
   <img width="900" height="300" src="./multiGPUexampleNoSync.png">
 </p>  
+
 **c.** A slightly modified code where one loop does async memory transfer from HtoD (with _cudaStreamSynchronize(plan[i].stream)_) and the next loop does kernel launch and async memory transfer from DtoH results in the following concurrency type with a duration of 7.05 ms.
 <p align="center">
   <img width="900" height="300" src="./multiGPUexampleWithSync.png">

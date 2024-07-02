@@ -58,8 +58,11 @@ When Multi-GPU commands are used on the Euclidean Distance Raw Kernel is used wi
 </p>
 
 This case happens despite actively sending the split dataset into separate GPUs, as well as using Streams from concurrency structures. Hence, at this point couple of actions are considered. 
-1. To change the pseudocode to get through Euclidean Distance calculation at once, with no classification calculation coming in between to observe whether parallel execution is blocked due to Host being occupied with many calls from GPU 1. For this purpose the following Pseudocode is considered:
 
+## Solving the Multi-GPU Implementation Issue:
+
+### Action pre-1: Implementing a New Pseudocode
+The following will be amended according to the algorithm needs discovered in **Action 1**.
      **KNN Pseudocode (Second):**
    
             Load the training data in Host.
@@ -70,10 +73,9 @@ This case happens despite actively sending the split dataset into separate GPUs,
             For each x_test in Host:
                 From these K rows, each label gets a weighted vote according to how close they are to new data, to predict the new data's label.
    
-3. Have all of the data reside in Host (while data is acquired and split) and only send to 2 separate GPUs when they need to get processed.
-4. TBC!
 
-## Imitating Concurrency for Multi-GPU Environment Using a CUDA Example
+
+### Action 1: Imitating Concurrency for Multi-GPU Environment Using a CUDA Example
 In order to imitate any concurrency the following repo is run: [link](https://github.com/zchee/cuda-sample/tree/master/0_Simple/simpleMultiGPU).
 
 **a.** In its original configuration this code does async memory transfer from HtoD, kernel launch, asynch memory transfer from DtoH in a loop for each GPU. The resultant concurrency is in the pattern: Gpu 1 HtoD, (Gpu 1 kernel and DtoH)||(Gpu 2 HtoD), (Gpu 2 kernel and DtoH)||(Gpu 3 HtoD) with a duration of 13.3 ms.

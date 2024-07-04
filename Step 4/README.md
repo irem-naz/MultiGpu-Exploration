@@ -96,7 +96,7 @@ In order to imitate any concurrency the following repo is run: [link](https://gi
 ### Action 2: Adapting the CUDA Example (version b) to Cupy 
 To be able to manage multiple GPU implementations with Cupy, in this step the needed methods that were used in the CUDA example is found in the Cupy library. 
 
-For asynchronous memory transfer '''cupy.ndarray.set()''' and cupy.ndarray.get() attributes are used between cupy.ndarray() which is hosted in the global memory of device and cupyx.empty_pinned() which is a pinned memory/non-pageable memory. 
+For asynchronous memory transfer '''sh cupy.ndarray.set()''' and cupy.ndarray.get() attributes are used between cupy.ndarray() which is hosted in the global memory of device and cupyx.empty_pinned() which is a pinned memory/non-pageable memory. 
 
 
 

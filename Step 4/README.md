@@ -98,7 +98,7 @@ To be able to manage multiple GPU implementations with Cupy, in this step the ne
 
 For asynchronous memory transfer ```cupy.ndarray.set()``` and ```cupy.ndarray.get()``` attributes are used between ```cupy.ndarray()``` which is hosted in the global memory of device and ```cupyx.empty_pinned()``` which is a pinned memory/non-pageable memory. Non-deafult and non-blocking streams per GPU must be initialized where all communication to GPUs must go through ```cupy.cuda.Stream(non_blocking = True)```.
 
---> The CUDA multiple GPU section here that imitates Action 1-b workflow is used. The CUDA kernel HtoD transfer, kernel launch, and DtoH transfer last for 9 ms.
+--> The CUDA multiple GPU section here that imitates **Action 1-b** workflow is used. The CUDA kernel HtoD transfer, kernel launch, and DtoH transfer last for 9 ms.
 
 <p align="center">
   <img width="900" height="300" src="./cupy_multiGPUexampleNoSync.png">

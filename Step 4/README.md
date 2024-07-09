@@ -182,6 +182,22 @@ By having data initialization per GPU with memory allocation and asynchronous me
 
 ```sh
 Accuracy: 0.9721714285714286
-GPU speed:
+
+Running with 1 GPU(s)
+Elapsed time with 1 GPU(s): 9.72611379623413 seconds
+Running with 2 GPU(s)
+Elapsed time with 2 GPU(s): 7.423197984695435 seconds
+Running with 3 GPU(s)
+Elapsed time with 3 GPU(s): 6.519174575805664 seconds
+Running with 4 GPU(s)
+Elapsed time with 4 GPU(s): 6.5249834060668945 seconds
+Running with 5 GPU(s)
+Elapsed time with 5 GPU(s): 6.375927209854126 seconds
+Running with 6 GPU(s)
+Elapsed time with 6 GPU(s): 6.329009771347046 seconds
+Running with 7 GPU(s)
+Elapsed time with 7 GPU(s): 6.791259288787842 seconds
+Running with 8 GPU(s)
+Elapsed time with 8 GPU(s): 6.617664337158203 seconds
 ```
 

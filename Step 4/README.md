@@ -107,7 +107,7 @@ For asynchronous memory transfer ```cupy.ndarray.set()``` and ```cupy.ndarray.ge
 ### Action 3: New GPU-aligned KNN workflow and Multi-GPU Execution
 While making the KNN suitable for parallel execution, distance calculation and weighted voting are amended with considerations for how memory transfers and multi-GPU execution is done.
 
-#### 3a: Euclidean Distance Calculation
+#### -- 3a: Euclidean Distance Calculation --
 **Functions used**
 
 This calculation is converted to CUDA raw kernel to be able to utilize overlapping multiGPU execution. To achieve overlaps, the execution should be Asynchronous, which is achieved in this case by having:
@@ -162,7 +162,7 @@ void euclidean_distance_kernel(float* X_train, float* X_test, float* distances, 
 
 By having data initialization per GPU with memory allocation and asynchronous memory transfer and using CUDA kernels a total speedup of 3-5x is achieved depending on how many GPUs are used. This speedup is purely for the section starting from memory allocation to GPU 1 until the completion of the distance kernel, and not the totality of the program.
 
-#### 3b: Weighted Voting and Label Determination
+#### -- 3b: Weighted Voting and Label Determination --
 
 
 

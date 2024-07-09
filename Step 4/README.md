@@ -200,6 +200,10 @@ Elapsed time with 7 GPU(s): 6.791259288787842 seconds
 Running with 8 GPU(s)
 Elapsed time with 8 GPU(s): 6.617664337158203 seconds
 ```
+**5 GPU Execution**
+<p align="center">
+  <img width="900" height="300" src="./5GPUexecutionFinalKNN.png">
+</p>  
 
 #### -- Notes: --
 

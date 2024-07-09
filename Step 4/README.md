@@ -158,11 +158,26 @@ void euclidean_distance_kernel(float* X_train, float* X_test, float* distances, 
 }
 ''', 'euclidean_distance_kernel')
 ```
-**Summary**
-
-By having data initialization per GPU with memory allocation and asynchronous memory transfer and using CUDA kernels a total speedup of 3-5x is achieved depending on how many GPUs are used. This speedup is purely for the section starting from memory allocation to GPU 1 until the completion of the distance kernel, and not the totality of the program.
 
 #### -- 3b: Weighted Voting and Label Determination --
 
+For this part, only Cupy's existing functions are used to achieve speedups using large matrix structures that allow the highest parallelization when launched. To achieve this, the execution of the pseudocode has to be amended by the user's efforts, no matter what the ML algorithm at hand is. ```weighted_voting(myGPUs, k)``` is executed per GPU/Stream using GPUclass, and Cupy's methods that are extremely beneficial for ML and would be hard to implement using C by itself, such as ```cupy.argsort``` and ```cupy.take_along_axis``` to acquire the index of the closest x_train dataset points to each x_test value from the distances array in GOUclass object. Despite these Cupy calls being synchronous launches, the handling of the large matrices allows the utilization of parallel execution in GPUs. The speedup achieved by this, in contrast to ```rawEucOnly.py``` implementation which directly translates the logic of KNN to code with CPU-aligned code and for loops is very high, nearly ```10x speedup``` **insert exact number later**.
+
+```python
+# Get the indices of the k smallest distances per row
+neighbors_idx = cp.argsort(distances, axis=1)[:, :k]
+y_train_expanded = cp.expand_dims(y_train, axis=0)
+
+# Get label and distance matrix indexed from GPU's distances array
+neighbors_labels = cp.take_along_axis(y_train_expanded, neighbors_idx, axis=1).squeeze()
+neighbors_distances = cp.take_along_axis(distances, neighbors_idx, axis=1)
+
+# Predicting using weighted voting according to the closest neighbors
+weights = 1 / (neighbors_distances + 1e-5)
+```
+
+#### -- Summary --
+
+By having data initialization per GPU with memory allocation and asynchronous memory transfer and using CUDA kernels a total speedup of 3-5x is achieved depending on how many GPUs are used. This speedup is purely for the section starting from memory allocation to GPU 1 until the completion of the distance kernel, and not the totality of the program. Similarly, being able to utilize the large matrix computations from Cupy library allows for a high-speedup, despite not offering asynchronous launches. By utilizing methods, the goal is to showcase the ease of use and implementation compared to CUDA, with significant speedups while having access to ML libraries and tools already established in the field, with Numpy executions and Numpy-aligned dataset availability.
 
 

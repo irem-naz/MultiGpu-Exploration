@@ -201,3 +201,13 @@ Running with 8 GPU(s)
 Elapsed time with 8 GPU(s): 6.617664337158203 seconds
 ```
 
+#### -- Notes: --
+
+- If there is no previous experience in utilizing matrix functions, the Numpy implementations for ML (scikit-learn source code) can be studied and converted to Cupy.
+- Some Cupy functions are asynchronous from its implementation in Cupy, hence studying the source code is helpful to pinpoint these functions. Such as:
+    - arithmetic function (+, -, *, /)
+    - array initialization (cupy.asarray, cupy.zeros, cupy.random.randint)
+    - reduction kernels (cupy.sum, cupy.mean)
+    - memory transfers (cupy.set, cupy.get)
+- Cupy uses Memory Pool by default which synchronously manages memory allocation and deallocation. Therefore for efficient Memory Management it is necessary to amend it according to the needs of the program. Memory Pool can be turned off or made asynchronous.
+    - For this code ```cp.cuda.set_allocator(cp.cuda.MemoryAsyncPool().malloc)``` is used to have memory operations without blocking the Host.    

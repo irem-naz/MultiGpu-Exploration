@@ -103,3 +103,30 @@ For asynchronous memory transfer ```cupy.ndarray.set()``` and ```cupy.ndarray.ge
 <p align="center">
   <img width="900" height="300" src="./cupy_multiGPUexampleNoSync.png">
 </p>  
+
+### Action 3: New GPU-aligned KNN workflow and Multi-GPU Execution
+While making the KNN suitable for parallel execution, distance calculation and weighted voting are amended with considerations for how memory transfers and multi-GPU execution is done.
+
+#### 3a: Euclidean Distance Calculation
+This calculation is converted to CUDA raw kernel to be able to utilize overlapping multiGPU execution. To achieve overlaps, the execution should be Asynchronous, which is achieved in this case by having:
+
+- cudaMallocAsync using Asynchronous Memory Pool through ```cupy.cuda.AsyncMemoryPool```.
+- cudaMemcpyAsync using Asynchronous Memory Transfer through ```cupy.ndarray.set()```, ```cupy.ndarray.get()```, ```cupy.asarray(a, blocking=False)```
+- cuModuleLoadData using CUDA kernel which is asynchronous by default through ```cupy.RawKernel```
+
+The logic is also amended so that each GPU has a non-default stream it is responsible for. Moreover, as data parallelism is established, there is a need to track which dataset is under which stream, meaning which GPU it is hosted by. This is established by:
+
+```python
+class GPUclass:
+    def __init__(self):
+        # The 2D distance array for each x_test value (row) distances to each x_train value is recorded (column)
+        self.d_distances = None
+        self.d_Xtrain = None
+        # Subset of the larger x_test array sent for this GPU
+        self.d_Xtest = None
+        self.d_yTrain = None
+        self.stream = None
+```
+
+The start of the code is dedicated to initializing the data by allocating memory in Host and per Device, as well as data transfers to Devices. cudaHostMalloc is a synchronous section of the code that cannot be amended. When 2 types of setups are tried, 1) allocating memory to each GPU and then transferring data to each GPU and 2) allocating memory and doing memory transfers to each GPU, it is seen that **Option 2 is the faster option by 5x**, despite having overlapping memory transfers in Option 1. This is mainly because there is increased waiting time due to memory allocations as well as context switches between GPUs/Streams. 
+

@@ -137,7 +137,7 @@ The start of the code is dedicated to initializing the data by allocating memory
 
 **CUDA Kernel Logic**
 
-Each CUDA Kernel running in each GPU/Stream is concurrent. For example, ```using concurrent kernel execution with 5 GPUs has 5x speedup compared to 1 GPU serial execution```. To reap the highest benefits, each GPUclass deals with the distance calculation and stores the result in its GPU in a 2D array, which is later used by ```weighted_voting()``` function to make predictions for the test class using Cupy's own functions. By eliminating the need for the arrays' transfer to the Host and transferring to another GPU later for executing the Cupy functions.
+Each CUDA Kernel running in each GPU/Stream is concurrent. For example, ```using concurrent kernel execution with 5 GPUs has 5x speedup compared to 1 GPU serial execution of the euclidean_distance_kernel```. To reap the highest benefits, each GPUclass deals with the distance calculation and stores the result in its GPU in a 2D array, which is later used by ```weighted_voting()``` function to make predictions for the test class using Cupy's own functions. By eliminating the need for the arrays' transfer to the Host and transferring to another GPU later for executing the Cupy functions.
 ```cpp
 euclidean_distance_kernel = cp.RawKernel(r'''
 extern "C" __global__
@@ -158,3 +158,11 @@ void euclidean_distance_kernel(float* X_train, float* X_test, float* distances, 
 }
 ''', 'euclidean_distance_kernel')
 ```
+**Summary**
+
+By having data initialization per GPU with memory allocation and asynchronous memory transfer and using CUDA kernels a total speedup of 3-5x is achieved depending on how many GPUs are used. This speedup is purely for the section starting from memory allocation to GPU 1 until the completion of the distance kernel, and not the totality of the program.
+
+#### 3b: Weighted Voting and Label Determination
+
+
+

@@ -133,4 +133,24 @@ class GPUclass:
 The start of the code is dedicated to initializing the data by allocating memory in Host and per Device, as well as data transfers to Devices. cudaHostMalloc is a synchronous section of the code that cannot be amended. When 2 types of setups are tried, 1) allocating memory to each GPU and then transferring data to each GPU and 2) allocating memory and doing memory transfers to each GPU, it is seen that ```Option 2 is the faster option by 5x```, despite having overlapping memory transfers in Option 1. This is mainly because there is increased waiting time due to memory allocations as well as context switches between GPUs/Streams. 
 
 **CUDA Kernel Logic**
-Each CUDA Kernel running in each GPU/Stream is concurrent. For example, ```using concurrent kernel execution with 5 GPUs has 5x speedup compared to 1 GPU serial execution```. 
+Each CUDA Kernel running in each GPU/Stream is concurrent. For example, ```using concurrent kernel execution with 5 GPUs has 5x speedup compared to 1 GPU serial execution```. To reap the highest benefits, each GPUclass deals with the distance calculation and stores the result in its GPU in a 2D array, which is later used by ```weighted_voting()``` function to make predictions for the test class using Cupy's own functions. By eliminating the need for the arrays' transfer to the Host and transferring to another GPU later for executing the Cupy functions.
+```cpp
+euclidean_distance_kernel = cp.RawKernel(r'''
+extern "C" __global__
+void euclidean_distance_kernel(float* X_train, float* X_test, float* distances, int train_size, int test_size, int feature_size) {
+    int train_idx = blockIdx.x * blockDim.x + threadIdx.x;  // Index for X_train
+    int test_idx = blockIdx.y;  // Index for X_test
+
+    if (train_idx < train_size && test_idx < test_size) {
+        float dist = 0.0;
+        for (int i = 0; i < feature_size; i++) {
+            float train_val = X_train[train_idx * feature_size + i];
+            float test_val = X_test[test_idx * feature_size + i];
+            float diff = train_val - test_val;
+            dist += diff * diff;
+        }
+        distances[test_idx * train_size + train_idx] = sqrtf(dist);
+    }
+}
+''', 'euclidean_distance_kernel')
+```

@@ -130,7 +130,7 @@ class GPUclass:
         self.stream = None
 ```
 **Data Initialization Per GPU**
-The start of the code is dedicated to initializing the data by allocating memory in Host and per Device, as well as data transfers to Devices. cudaHostMalloc is a synchronous section of the code that cannot be amended. When 2 types of setups are tried, 1) allocating memory to each GPU and then transferring data to each GPU and 2) allocating memory and doing memory transfers to each GPU, it is seen that **Option 2 is the faster option by 5x**, despite having overlapping memory transfers in Option 1. This is mainly because there is increased waiting time due to memory allocations as well as context switches between GPUs/Streams. 
+The start of the code is dedicated to initializing the data by allocating memory in Host and per Device, as well as data transfers to Devices. cudaHostMalloc is a synchronous section of the code that cannot be amended. When 2 types of setups are tried, 1) allocating memory to each GPU and then transferring data to each GPU and 2) allocating memory and doing memory transfers to each GPU, it is seen that ```Option 2 is the faster option by 5x```, despite having overlapping memory transfers in Option 1. This is mainly because there is increased waiting time due to memory allocations as well as context switches between GPUs/Streams. 
 
 **CUDA Kernel Logic**
-Each CUDA Kernel running in each GPU/Stream is concurrent. For example, _using concurrent kernel execution with 5 GPUs has 5x speedup compared to 1 GPU serial execution_. 
+Each CUDA Kernel running in each GPU/Stream is concurrent. For example, ```using concurrent kernel execution with 5 GPUs has 5x speedup compared to 1 GPU serial execution```. 

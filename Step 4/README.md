@@ -180,4 +180,8 @@ weights = 1 / (neighbors_distances + 1e-5)
 
 By having data initialization per GPU with memory allocation and asynchronous memory transfer and using CUDA kernels a total speedup of 3-5x is achieved depending on how many GPUs are used. This speedup is purely for the section starting from memory allocation to GPU 1 until the completion of the distance kernel, and not the totality of the program. Similarly, being able to utilize the large matrix computations from Cupy library allows for a high-speedup, despite not offering asynchronous launches. By utilizing methods, the goal is to showcase the ease of use and implementation compared to CUDA, with significant speedups while having access to ML libraries and tools already established in the field, with Numpy executions and Numpy-aligned dataset availability.
 
+```sh
+Accuracy: 0.9721714285714286
+GPU speed:
+```
 

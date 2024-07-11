@@ -45,7 +45,7 @@ Accuracy: 0.9721714285714286
 ```sh
 $ python rawEucOnly.py
 Elapsed time: 13.79976511001587 seconds
-0.9721714285714286
+Accuracy: 0.9721714285714286
 ```
 
 As observed here, the distance calculation has high computational needs, and converting it to RawKernel already cuts down the total execution of the program by half.

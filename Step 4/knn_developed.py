@@ -33,6 +33,8 @@ def send_data_to_gpus(myGPUs, X, y, train_indices, test_indices):
             with myGPUs[i].stream:
                 start_idx = i * index
                 end_idx = (i + 1) * index if i != GPU_N - 1 else len(X_test)
+                # 1 GPU (14000,786)
+                # (7000, 786) per Gpu for 2
                 myGPUs[i].d_Xtest = cp.asarray(X_test[start_idx:end_idx], dtype=cp.float32, blocking=False)
                 myGPUs[i].d_Xtrain = cp.asarray(X_train, dtype=cp.float32, blocking=False)
                 myGPUs[i].d_yTrain = cp.asarray(y_train, dtype=cp.int32, blocking=False)

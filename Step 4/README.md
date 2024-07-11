@@ -214,6 +214,9 @@ Elapsed time with 7 GPU(s) over 10 runs: 4.832904028892517 seconds
 Running with 8 GPU(s)
 Elapsed time with 8 GPU(s) over 10 runs: 4.825555205345154 seconds
 ```
+
+According to the number of GPUs used, a speedup of ```1.83x``` to ```2.78x``` can be achieved with GPU optimized Cupy KNN model compared to CPU optimized Numpy KNN model.
+
 **5 GPU Execution Example**
 <p align="center">
   <img width="900" height="200" src="./5GPUexecutionFinalKNN.png">

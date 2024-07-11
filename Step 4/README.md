@@ -137,7 +137,10 @@ The start of the code is dedicated to initializing the data by allocating memory
 
 **CUDA Kernel Logic**
 
-Each CUDA Kernel running in each GPU/Stream is concurrent. For example, ```using concurrent kernel execution with 5 GPUs has 5x speedup compared to 1 GPU serial execution of the euclidean_distance_kernel```. To reap the highest benefits, each GPUclass deals with the distance calculation and stores the result in its GPU in a 2D array, which is later used by ```weighted_voting()``` function to make predictions for the test class using Cupy's own functions. By eliminating the need for the arrays' transfer to the Host and transferring to another GPU later for executing the Cupy functions.
+Each CUDA Kernel running in each GPU/Stream is concurrent. With this capability, ```using more than 1 GPU results in 65x speedup in the execution of euclidean_distance_kernel compared to using only 1 GPU```. 
+
+To reap the highest benefits, each GPUclass deals with the distance calculation and stores the result in its GPU in a 2D array, which is later used by ```weighted_voting()``` function to make predictions for the test class using Cupy's own functions. By eliminating the need for the arrays' transfer to the Host and transferring to another GPU later for executing the Cupy functions.
+
 ```cpp
 euclidean_distance_kernel = cp.RawKernel(r'''
 extern "C" __global__

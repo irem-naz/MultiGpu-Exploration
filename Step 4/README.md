@@ -180,25 +180,39 @@ weights = 1 / (neighbors_distances + 1e-5)
 
 By having data initialization per GPU with memory allocation and asynchronous memory transfer and using CUDA kernels a total speedup of 3-5x is achieved depending on how many GPUs are used. This speedup is purely for the section starting from memory allocation to GPU 1 until the completion of the distance kernel, and not the totality of the program. Similarly, being able to utilize the large matrix computations from Cupy library allows for a high-speedup, despite not offering asynchronous launches. By utilizing methods, the goal is to showcase the ease of use and implementation compared to CUDA, with significant speedups while having access to ML libraries and tools already established in the field, with Numpy executions and Numpy-aligned dataset availability.
 
+**Runtime for the industry standard KNN algorithm that uses Numpy:**
+
+The dataset, data randomization and split are equivalent to the Cupy code, timed for fitting the KNN model and predicting the y_test using KNN model.
+
 ```sh
+$ python knn_generic.py
+Average elapsed time over 20 runs: 13.399729490280151 seconds
+Average accuracy over 20 runs: 0.9721714285714287
+```
+**Runtime for the Cupy model developed in this Step:**
+
+The dataset, data randomization and split are equivalent, timed for fitting the KNN model and predicting the y_test using KNN model.
+
+```sh
+$ python knn_developed.py
 Accuracy: 0.9721714285714286
 
 Running with 1 GPU(s)
-Elapsed time with 1 GPU(s): 9.72611379623413 seconds
+Elapsed time with 1 GPU(s): 7.894999742507935 seconds
 Running with 2 GPU(s)
-Elapsed time with 2 GPU(s): 7.423197984695435 seconds
+Elapsed time with 2 GPU(s): 5.875360012054443 seconds
 Running with 3 GPU(s)
-Elapsed time with 3 GPU(s): 6.519174575805664 seconds
+Elapsed time with 3 GPU(s): 6.434953212738037 seconds
 Running with 4 GPU(s)
-Elapsed time with 4 GPU(s): 6.5249834060668945 seconds
+Elapsed time with 4 GPU(s): 6.155690670013428 seconds
 Running with 5 GPU(s)
-Elapsed time with 5 GPU(s): 6.375927209854126 seconds
+Elapsed time with 5 GPU(s): 5.057019948959351 seconds
 Running with 6 GPU(s)
-Elapsed time with 6 GPU(s): 6.329009771347046 seconds
+Elapsed time with 6 GPU(s): 4.976140975952148 seconds
 Running with 7 GPU(s)
-Elapsed time with 7 GPU(s): 6.791259288787842 seconds
+Elapsed time with 7 GPU(s): 4.902159929275513 seconds
 Running with 8 GPU(s)
-Elapsed time with 8 GPU(s): 6.617664337158203 seconds
+Elapsed time with 8 GPU(s): 4.892413139343262 seconds
 ```
 **5 GPU Execution Example**
 <p align="center">

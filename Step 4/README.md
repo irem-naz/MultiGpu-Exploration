@@ -198,21 +198,21 @@ $ python knn_developed.py
 Accuracy: 0.9721714285714286
 
 Running with 1 GPU(s)
-Elapsed time with 1 GPU(s): 7.894999742507935 seconds
+Elapsed time with 1 GPU(s) over 10 runs: 7.335485744476318 seconds
 Running with 2 GPU(s)
-Elapsed time with 2 GPU(s): 5.875360012054443 seconds
+Elapsed time with 2 GPU(s) over 10 runs: 5.736322569847107 seconds
 Running with 3 GPU(s)
-Elapsed time with 3 GPU(s): 6.434953212738037 seconds
+Elapsed time with 3 GPU(s) over 10 runs: 5.255097031593323 seconds
 Running with 4 GPU(s)
-Elapsed time with 4 GPU(s): 6.155690670013428 seconds
+Elapsed time with 4 GPU(s) over 10 runs: 5.036826038360596 seconds
 Running with 5 GPU(s)
-Elapsed time with 5 GPU(s): 5.057019948959351 seconds
+Elapsed time with 5 GPU(s) over 10 runs: 4.92397518157959 seconds
 Running with 6 GPU(s)
-Elapsed time with 6 GPU(s): 4.976140975952148 seconds
+Elapsed time with 6 GPU(s) over 10 runs: 4.894332718849182 seconds
 Running with 7 GPU(s)
-Elapsed time with 7 GPU(s): 4.902159929275513 seconds
+Elapsed time with 7 GPU(s) over 10 runs: 4.832904028892517 seconds
 Running with 8 GPU(s)
-Elapsed time with 8 GPU(s): 4.892413139343262 seconds
+Elapsed time with 8 GPU(s) over 10 runs: 4.825555205345154 seconds
 ```
 **5 GPU Execution Example**
 <p align="center">

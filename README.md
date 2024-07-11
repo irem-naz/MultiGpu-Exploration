@@ -34,11 +34,5 @@ This will serve as a log for all the actions taken on the project and the decisi
    - implemented successfully for only CuPy and Numba.
      
 #### After the creation of this log file following is being done:
-❌ [Step 4](Step%204/README.md) Using KNN for Cupy Multi-GPU implementation with MNIST dataset
+✔️  [Step 4](Step%204/README.md) Using KNN for Cupy Multi-GPU implementation with MNIST dataset
    - implemented using KNN for Cupy Multi-GPU implementation with MNIST dataset.
-     - ✔️ Initially implemented it in pure CuPy and ran it.
-     - Converted the euclidean distance calculation into CUDA kernel to disperse between GPUs.
-       - **Problem:** Despite implementing rawKernel, and establishing streams and GPU contexts, each action is processed sequentially.
-       - **Goal** is to gain any type of concurrency between GPUs.
-       - [Follow the updates on the implementation here.](Step%204/README.md)
-   

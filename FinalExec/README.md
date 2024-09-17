@@ -5,7 +5,19 @@ conda env create -f environment.yml
 ```
 
 ## Description of KKN_Example
-There are 4 files in this folder ```numpyFile.py, cudaFile.cu, cupyFile.py, hybridFile.py```. The default configuration for running each script by itself is ```python cudaFile.cu <Number_of_GPU> <fraction>``` or each file can be run specifically through mother.py as well  ```python mother.py cudaFile.cu [<Number_of_GPU, deafult=1> <fraction, default=1>]```. The real ease of using _mother.py_ is ```python mother.py <Number_of_GPU> <fraction>`` running each script for the same configuration for comparison. 
+There are 4 files in this folder ```numpyFile.py, cudaFile.cu, cupyFile.py, hybridFile.py```. The default configuration for running each script by itself is 
+```sh 
+python cudaFile.cu <Number_of_GPU> <fraction>
+```
+or each file can be run specifically through mother.py as well  
+```
+python mother.py cudaFile.cu [<Number_of_GPU, deafult=1> <fraction, default=1>]
+```
+The real ease of using _mother.py_ is 
+```
+python mother.py <Number_of_GPU> <fraction>
+``` 
+running each script for the same configuration for comparison. 
 
 ## What is GPU_N and fraction [+the Dataset Used]?
 GPU_N refers to the number of GPUs that will be used to process the source data. The default value is always 1 and it is recommended to change between 1-2-4-8,

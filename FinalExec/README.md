@@ -38,8 +38,10 @@ This is the KNN script that mixes the ```cupyFile.py``` and ```cudaFile.cu```. T
 
 # Observed Outcomes
 
-### Data Size
+### Data Size & Data Type
 The MNIST dataset in total is 210 MB. In the following graphs ```fractions = 0.25, 0.5, 1.28, 2``` is used to achieve input data sizes of ```data_size = 50MB, 105MB, 265MB, 420MB```.
+
+MNIST data type for X and y is ```int32```.
 
 ## ! Note: There is a need for revising data sizes for memory aligned observation of input data sizes (feedback)
 

@@ -19,6 +19,12 @@ python mother.py <Number_of_GPU> <fraction>
 ``` 
 running each script for the same configuration for comparison. 
 
+## Example run
+Run each file ```numpyFile.py, cudaFile.cu, cupyFile.py, hybridFile.py``` for 1 GPU and with all of MNIST dataset as the source data.
+```
+python mother.py 1 1
+``` 
+
 #### What is GPU_N and fraction [+the Dataset Used]?
 GPU_N refers to the number of GPUs that will be used to process the source data. The default value is always 1 and it is recommended to change between 1-2-4-8,
 

@@ -19,19 +19,19 @@ python mother.py <Number_of_GPU> <fraction>
 ``` 
 running each script for the same configuration for comparison. 
 
-## What is GPU_N and fraction [+the Dataset Used]?
+#### What is GPU_N and fraction [+the Dataset Used]?
 GPU_N refers to the number of GPUs that will be used to process the source data. The default value is always 1 and it is recommended to change between 1-2-4-8,
 
 Fraction refers to the repeat ratio of the source data. Due to the limited amount of data points available in simple machine learning algorithms, the MNIST dataset is repeated or cut short according to the fraction. For example, if _fraction=1_ all of the MNIST dataset is used, if _fraction=0.5_ half of the MNIST dataset is used, and _fraction=2_ twice the number of MNIST dataset is used. Since the rest of the code will hold true, the source data can be changed according to personal need. The accuracy is above 95%> for all models here, when all of MNIST dataset is used.
 
-## numpyFile.py
+### numpyFile.py
 This script uses KNN algorithm from SciKit Learn library which is the generically used library for simple ML algorithms such as KNNs. It runs on CPU and uses numpy library.
 
-## cudaFile.cu
+### cudaFile.cu
 This is the KNN script that is adapted logically to be equivalent to the numpy implementation of SciKit Learn's KNN. Thanks to this, some room for improvement that can be achieved by having a CUDA script might have been lost. Direct comparison to cuML's implementation of KNNs can be beneficial to improve this script, and therefore the hybrid script as well.
 
-## cupyFile.py
+### cupyFile.py
 This is the KNN script that is adapted logically to be equivalent to the numpy implementation of SciKit Learn's KNN by converting each numpy function to its cupy form. 
 
-## hybridFile.py
+### hybridFile.py
 This is the KNN script that mixes the ```cupyFile.py``` and ```cudaFile.cu```. The mathematical functions are handled by CUDA scripts, while the parsing and data handling/casting is done through cupy functions.

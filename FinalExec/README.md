@@ -82,3 +82,9 @@ The file structure of ```KNN_Example_float``` is identical to ```KNN_Example_int
 
 # Exploring Multinomial Logistic Regression - MNIST dataset
 This code is only explored for cuML implementation and CUDA implementation, which is observed at data size usage of MNIST with %25, 50%, 75% and 100% of available unique data point.
+
+It is possible to use cuML with multiGPU configuration using DASK. However, this has not been tested during this exploration. The following comparison is made for only 1 GPU. There is no capability to specify thread and block sizes with cuML. 
+
+<p align="center">
+  <img width="400" height="250" src="./images/cuML_vs_CUDA.png">
+</p> 

@@ -47,15 +47,9 @@ The following graphs showcase the performances of _cupyFile.py_, _cudaFile.cu_, 
 
 <p align="center">
   <img width="400" height="250" src="./cudaGraph.png">
-</p> 
-
-<p align="center">
   <img width="400" height="250" src="./cupyGraph.png">
+  <img width="400" height="250" src="./hybridGraph.png">
 </p> 
 
-<p align="center">
-  <img width="400" height="25
-    0" src="./hybridGraph.png">
-</p> 
 
 

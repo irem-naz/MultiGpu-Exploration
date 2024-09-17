@@ -5,9 +5,12 @@ conda env create -f environment.yml
 ```
 
 ## Understanding the MNIST Dataset
-The complete dataset has a load of 210 MB. Array X has 70000 data points with 784 features [shape = (70000,784)]. There are 70000 labels, array y.
+The complete dataset has a load of 210 MB. Array X has 70000 data points with 784 features [shape = (70000,784)]. There are 70000 labels, array y. There are 10 types of classes, indicated by an integer value from 0 to 9, in the y array.
 
 Both of the arrays are divided into 75% - 25% where initial group is used for training and the latter is used for testing. The accuracy printing is disabled for the codes above, however, each model performs with >95% accuracy.
+
+## Understanding the exploration
+The tests explored here are all conducted over multi-class KNN, if not previously explored please follow this [link](https://www.geeksforgeeks.org/how-does-knn-handle-multi-class-classification-problems/) to learn more about KNNs.
 
 ## Description of KKN_Example_int
 There are 4 files in this folder ```numpyFile.py, cudaFile.cu, cupyFile.py, hybridFile.py```. The default configuration for running each script by itself is 

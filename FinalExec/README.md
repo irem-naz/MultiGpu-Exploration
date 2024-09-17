@@ -4,7 +4,7 @@ In order to satisfy the environment requirement, please use the following:
 conda env create -f environment.yml
 ```
 
-## Description of KKN_Example
+## Description of KKN_Example_int
 There are 4 files in this folder ```numpyFile.py, cudaFile.cu, cupyFile.py, hybridFile.py```. The default configuration for running each script by itself is 
 ```sh 
 python cudaFile.cu <Number_of_GPU> <fraction>
@@ -59,5 +59,9 @@ The following graphs showcase the performances of _cupyFile.py_, _cudaFile.cu_, 
   <img width="400" height="250" src="./hybridGraph.png">
 </p> 
 
+
+# KNN_Example_int vs KNN_Example_float
+
+The file structure of ```KNN_Example_float``` is identical to ```KNN_Example_int```. It is added to repo to make comparisons on how the data type change (from int32 -> float32 for X values from MNIST dataset) affects the computation of the models. The float directory also has a mother python script that can be used to run all the files for the sae GPU/fraction configuration.
 
 

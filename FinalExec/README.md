@@ -78,3 +78,7 @@ The file structure of ```KNN_Example_float``` is identical to ```KNN_Example_int
   <img width="400" height="250" src="./images/singleGPU_float_SciKit_omitted.png">
   <img width="400" height="250" src="./images/singleGPU_int_SciKit_omitted.png">
 </p> 
+
+
+# Exploring Multinomial Logistic Regression - MNIST dataset
+This code is only explored for cuML implementation and CUDA implementation, which is observed at data size usage of MNIST with %25, 50%, 75% and 100% of available unique data point.

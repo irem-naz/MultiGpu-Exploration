@@ -85,6 +85,10 @@ This code is only explored for cuML implementation and CUDA implementation, whic
 
 It is possible to use cuML with multiGPU configuration using DASK. However, this has not been tested during this exploration. The following comparison is made for only 1 GPU. There is no capability to specify thread and block sizes with cuML. 
 
+Data Size & Data Type
+The MNIST dataset in total is 210 MB. In the following graphs ```fractions = 0.25, 0.5, 0.75, 1``` is used to achieve input data sizes of ```data_size = 50MB, 105MB, 155MB, 210MB```.
+Data type is kept as 32-bit integer.
+
 <p align="center">
   <img width="400" height="250" src="./images/cuML_vs_CUDA.png">
 </p> 

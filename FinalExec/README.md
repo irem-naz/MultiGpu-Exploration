@@ -54,9 +54,9 @@ MNIST data type for X and y is ```int32```.
 The following graphs showcase the performances of _cupyFile.py_, _cudaFile.cu_, and _hybridFile.py_ (where hybridFile is referred as CuPy with Custom Kernels).
 
 <p align="center">
-  <img width="400" height="250" src="./cudaGraph.png">
-  <img width="400" height="250" src="./cupyGraph.png">
-  <img width="400" height="250" src="./hybridGraph.png">
+  <img width="400" height="250" src="./images/cudaGraph.png">
+  <img width="400" height="250" src="./images/cupyGraph.png">
+  <img width="400" height="250" src="./images/hybridGraph.png">
 </p> 
 
 
@@ -64,4 +64,17 @@ The following graphs showcase the performances of _cupyFile.py_, _cudaFile.cu_, 
 
 The file structure of ```KNN_Example_float``` is identical to ```KNN_Example_int```. It is added to repo to make comparisons on how the data type change (from int32 -> float32 for X values from MNIST dataset) affects the computation of the models. The float directory also has a mother python script that can be used to run all the files for the sae GPU/fraction configuration.
 
+## Comparing each model on Single GPU with int or float data types for a range of data size
 
+<p align="center">
+  <img width="400" height="250" src="./images/singleGPU_float.png">
+  <img width="400" height="250" src="./images/singleGPU_int.png">
+</p> 
+
+
+## Comparing each model on Single GPU with int or float data types for a range of data size - omitted CPU (numpy - scikit learn implementation)
+
+<p align="center">
+  <img width="400" height="250" src="./images/singleGPU_float_SciKit_omitted.png">
+  <img width="400" height="250" src="./images/singleGPU_int_SciKit_omitted.png">
+</p> 

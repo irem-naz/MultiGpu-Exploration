@@ -35,3 +35,13 @@ This is the KNN script that is adapted logically to be equivalent to the numpy i
 
 ### hybridFile.py
 This is the KNN script that mixes the ```cupyFile.py``` and ```cudaFile.cu```. The mathematical functions are handled by CUDA scripts, while the parsing and data handling/casting is done through cupy functions.
+
+# Observed Outcomes
+
+### Data Size
+The MNIST dataset in total is 210 MB. In the following graphs ```fractions = 0.25, 0.5, 1.28, 2``` is used to achieve input data sizes of ```data_size = 50MB, 105MB, 265MB, 420MB```.
+
+## ! Note: There is a need for revising data sizes for memory aligned observation of input data sizes (feedback)
+
+The following graphs showcase the performances of _cupyFile.py_, _cudaFile.cu_, and _hybridFile.py_ (where hybridFile is referred as CuPy with Custom Kernels).
+

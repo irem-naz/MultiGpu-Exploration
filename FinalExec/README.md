@@ -45,3 +45,16 @@ The MNIST dataset in total is 210 MB. In the following graphs ```fractions = 0.2
 
 The following graphs showcase the performances of _cupyFile.py_, _cudaFile.cu_, and _hybridFile.py_ (where hybridFile is referred as CuPy with Custom Kernels).
 
+<p align="center">
+  <img width="900" height="300" src="./cudaGraph.png">
+</p> 
+
+<p align="center">
+  <img width="900" height="300" src="./cupyGraph.png">
+</p> 
+
+<p align="center">
+  <img width="900" height="300" src="./hybridGraph.png">
+</p> 
+
+

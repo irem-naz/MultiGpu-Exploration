@@ -7,7 +7,7 @@
 #include <chrono>
 
 
-#define GPU_N 8
+int GPU_N = 1;
 
 void read_mnist_data(const char* filename, float** X, int** y, int* n_samples, int* n_features, int fraction) {
     FILE* file = fopen(filename, "rb");
@@ -138,7 +138,7 @@ __global__ void weighted_voting_kernel(float* distances, int* y_train, int* pred
 //     nvmlShutdown();
 // }
 
-int main() {
+int main(int argc, char* argv[]) {
     printf("Running with %i GPUs...\n", GPU_N);
 
     // Fetch and prepare data

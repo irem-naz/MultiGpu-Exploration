@@ -23,7 +23,7 @@ def run_all_scripts(gpu_n, fraction):
     ]
 
     for script in scripts:
-        print(f"Running {script} with GPU_N={gpu_n} and fraction={fraction}")
+        print(f"\nRunning {script} with GPU_N={gpu_n} and fraction={fraction}")
 
         if script.endswith(".py"):
             run_python_script(script, gpu_n, fraction)

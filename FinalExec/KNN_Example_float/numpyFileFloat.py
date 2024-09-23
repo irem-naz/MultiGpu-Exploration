@@ -6,7 +6,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.datasets import fetch_openml
 
-
+import sys
 import time
 
 # Generate a synthetic dataset with 100k samples and 1k features
@@ -55,17 +55,15 @@ y_resized = y_resized.astype(np.int32)
 X = X_resized
 y = y_resized
 
-print(X.nbytes / (1024 ** 2))
-print(y.nbytes / (1024 ** 2))
+
+print(f"Size of X: {X.nbytes / (1024 ** 2)} MB")
+print(f"Size if y: {y.nbytes / (1024 ** 2)} MB")
 
 # Split the dataset into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
 start_time = time.time()
 # Print shapes to verify
-print(f'X_train shape: {X_train.shape}')
-print(f'X_test shape: {X_test.shape}')
-print(f'y_train shape: {y_train.shape}')
-print(f'y_test shape: {y_test.shape}')
+
 
 # Train KNN model
 
